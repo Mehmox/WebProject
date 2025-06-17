@@ -1,0 +1,23 @@
+<%- include("partials/head") %>
+
+    <form action="/edit/<%- event.id %>?_method=PUT" method="POST" class="box">
+
+        <input required name="name" placeholder="Event Name" type="text" maxlength="15" value="<%= event.name %>">
+        <input required name="date" type="date" value="<%= event.date %>">
+        <input required name="time" type="time" value="<%= event.time %>">
+        <textarea required name="location" placeholder="location" maxlength="63"><%= event.location %></textarea>
+        <textarea required name="description" placeholder="description"
+            maxlength="63"><%= event.description %></textarea>
+
+        <button type="submit"><img src="/edit.svg"
+                class="w-[30px] h-[30px]"></button>
+
+    </form>
+    <form action="/edit/<%- event.id %>?_method=DELETE" method="POST">
+
+        <button type="submit"><img src="/trash.svg"
+                class="w-[30px] h-[30px]"></button>
+
+    </form>
+    
+    <%- include("partials/foot") %>

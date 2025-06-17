@@ -1,0 +1,18 @@
+<%- include("partials/head") %>
+
+            <% events.forEach((event)=>{ %>
+
+            <form action="/edit/<%- event.id %>" method="GET" class="card">
+
+                <h3 class="text-center"><%= event.name %></h3>
+                <p><strong>Tarih: </strong> <%= event.date %></p>
+                <p><strong>Saat: </strong> <%= event.time %></p>
+                <p><strong>Konum: </strong> <%= event.location %></p>
+                <p><strong>Tanım: </strong><%= event.description %></p>
+                
+                <button type="submit" class="absolute right-0 top-0"><img src="/settings.webp" class="w-[30px] h-[30px]"></button>
+                
+            </form>
+
+            <%} )%>
+    <%- include("partials/foot") %>
