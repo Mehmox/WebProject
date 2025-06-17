@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const gets = require("./routes/get");
 const post = require("./routes/post");
 const methodOverride = require('method-override');
@@ -15,7 +15,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
-    console.log(req.method,req.originalUrl)
+    console.log(req.method, req.originalUrl)
     next();
 });
 

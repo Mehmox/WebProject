@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env ENV=development PORT=3000 nodemon src/index.js",
     "build:css": "tailwindcss -i ./src/index.css -o ./public/tailwind.css --watch",
-    "start": "cross-env ENV=production PORT=3000 node src/index.js"
+    "start": "cross-env ENV=production node src/index.js"
   },
   "license": "MIT",
   "type": "commonjs",
