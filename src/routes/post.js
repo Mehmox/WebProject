@@ -7,11 +7,11 @@ Router.post("/create", async (req, res) => {
 
     const { name, date, time, location, description } = req.body;
 
-    const combined = new Date(date + "T" + time).getTime();
-
-    for (let i = 0; i < ENV !== "production" ? 15 : 1; i++) {
-        const event = new db({ name, date: combined, location, description });
+    for (let i = 0; i < (ENV !== "production" ? 15 : 1); i++) {
+        const combined = new Date(date + "T" + time).getTime();
+        const event = new db({ name, date: combined + i * -1000, location, description });
         await event.save();
+        console.log(i)
     }
 
     res.redirect("/view");
