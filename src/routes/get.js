@@ -10,10 +10,10 @@ Router.get("/", (req, res) => {
 Router.get("/view", async (req, res) => {
     const events = await db.find({});
 
-    const orderedEvents = events.sort((a, b) => (+a.date) - (+b.date));
+    const orderedEvents = events.sort((a, b) => a.date - b.date);
 
     const results = orderedEvents.map((event) => {
-        const date = +event.date;
+        const date = event.date;
         event.date = new Date(date).toLocaleDateString();
         event.time = new Date(date).toLocaleTimeString();
         return event;
@@ -23,7 +23,7 @@ Router.get("/view", async (req, res) => {
 });
 
 if (ENV !== "production") {
-    
+
     Router.get("/drop", async (req, res) => {
         console.log("db clear!")
         await db.deleteMany({});
@@ -40,7 +40,7 @@ Router.get("/edit/:id", async (req, res) => {
     const { id } = req.params;
     const event = await db.findOne({ _id: id });
 
-    const date = +event.date;
+    const date = event.date;
     const d = new Date(date);
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, '0');

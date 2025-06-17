@@ -10,6 +10,10 @@
     border: 0;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .box {
     @apply w-full h-full flex flex-col justify-center items-center text-[30px]
 }
@@ -24,7 +28,8 @@
 
 .card {
     border: 5px solid black;
-    @apply mt-[5px] w-[400px] relative flex flex-col
+    @apply mt-[5px] w-96 relative flex flex-col hover:scale-105 hover:shadow-lg transition-all duration-200
+
 }
 
 input {
@@ -47,4 +52,5 @@ nav * {
 p {
     margin-left: 6px;
     word-wrap: break-word;
+    overflow-wrap: break-word;
 }

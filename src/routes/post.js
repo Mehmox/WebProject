@@ -11,13 +11,12 @@ Router.post("/create", async (req, res) => {
         const combined = new Date(date + "T" + time).getTime();
         const event = new db({ name, date: combined + i * -1000, location, description });
         await event.save();
-        console.log(i)
     }
 
     res.redirect("/view");
 });
 
-Router.post("/edit/id", async (req, res) => {
+Router.post("/edit/:id", async (req, res) => {
     const { id } = req.params;
     const event = await db.findOne({ id });
     res.render("edit", { event, title: "edit" });
