@@ -1,6 +1,8 @@
 const express = require("express");
 const Router = express.Router();
 const db = require("../Db");
+const ENV = process.env.ENV;
+console.log(ENV)
 
 Router.get("/", (req, res) => {
     res.redirect("/view");
@@ -21,10 +23,13 @@ Router.get("/view", async (req, res) => {
     res.render("read", { events: results, title: "views" });
 });
 
-Router.get("/drop", async (req, res) => {
-    await db.deleteMany({});
-    res.redirect("/view");
-});
+if (ENV !== "production") {
+    Router.get("/drop", async (req, res) => {
+        console.log("db clear!")
+        await db.deleteMany({});
+        res.redirect("/view");
+    });
+}
 
 Router.get("/create", (req, res) => {
     res.render("create", { title: "create" });
