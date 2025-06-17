@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 const db = require("../Db");
+const ENV = process.env.ENV;
 
 Router.post("/create", async (req, res) => {
 
@@ -8,7 +9,7 @@ Router.post("/create", async (req, res) => {
 
     const combined = new Date(date + "T" + time).getTime();
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < ENV !== "production" ? 15 : 1; i++) {
         const event = new db({ name, date: combined, location, description });
         await event.save();
     }
